@@ -1,15 +1,30 @@
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Router, Switch } from 'react-router-dom'
 
-import Home from './pages/Home.js'
+import React, { useState } from 'react'
+
+import history from './history'
+
+import Home from './pages/Home/Home.js'
+
+import Rooms from './pages/Rooms/Rooms.js'
 
 import "./styles/global.css"
 
 function App() {
+
+	const [username, setUsername] = useState()
+
+	const [playerID, setPlayerID] = useState()
+
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<Home />} />
-			</Routes>
+		<Router history={history}>
+			<Switch>
+				<Route exact path = "/">
+					<Home setUsername={setUsername} setPlayerID={setPlayerID} />
+				</Route>
+				
+				<Route exact path="/rooms" component={Rooms} />
+			</Switch>
 		</Router>
   	);
 }
