@@ -1,0 +1,46 @@
+:root {
+    --green-success: #67da86;
+    --dark-default: #272f3d;
+    --light-blue: #768bb0
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    all: unset;
+}
+
+input {
+    padding: 0 1rem;
+    height: 2.25rem;
+}
+
+.full-screen-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-default);
+}
+
+.side-by-side-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.btn{
+    height: 2.25rem;
+    color: white;
+    background-color: var(--green-success);
+    border-radius: .25rem;
+    padding: 0 1rem;
+    margin: 4px;
+    cursor: pointer;
+}
