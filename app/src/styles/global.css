@@ -1,7 +1,8 @@
 :root {
     --green-success: #67da86;
+    --green-success-2: #28e65a;
     --dark-default: #272f3d;
-    --light-blue: #768bb0
+    --light-blue: #768bb0;
 }
 
 * {
@@ -26,6 +27,7 @@ input {
     align-items: center;
     justify-content: center;
     background-color: var(--dark-default);
+    flex-direction: column;
 }
 
 .side-by-side-container {
@@ -38,9 +40,28 @@ input {
 .btn{
     height: 2.25rem;
     color: white;
-    background-color: var(--green-success);
+    background-color: var(--green-success-2);
     border-radius: .25rem;
     padding: 0 1rem;
     margin: 4px;
     cursor: pointer;
+}
+
+.not-selectable-input{
+    text-align: center;
+    color: grey;
+    pointer-events: none;
+}
+
+.icon-wrapper {
+    height: 2.25rem;
+    margin: 0 4px;
+    padding: 0 .6rem;
+    cursor: pointer;
+    background-color: var(--light-blue);
+    border-radius: .25rem;
+}
+
+span {
+    color: white;
 }

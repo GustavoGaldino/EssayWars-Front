@@ -1,31 +1,35 @@
 import { Route, Router, Switch } from 'react-router-dom'
 
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 
 import history from './history'
 
+import { UserProvider } from './Context/UserProvider'
 import Home from './pages/Home/Home.js'
-
 import Rooms from './pages/Rooms/Rooms.js'
+import Join from './pages/Join/Join.js'
+import Game from './pages/Game/Game.js'
 
 import "./styles/global.css"
 
 function App() {
-
-	const [username, setUsername] = useState()
-
-	const [playerID, setPlayerID] = useState()
-
 	return (
-		<Router history={history}>
-			<Switch>
-				<Route exact path = "/">
-					<Home setUsername={setUsername} setPlayerID={setPlayerID} />
-				</Route>
-				
-				<Route exact path="/rooms" component={Rooms} />
-			</Switch>
-		</Router>
+		<UserProvider>
+			<Router history={history}>
+				<Switch>
+					<Route exact path = "/">
+						<Home/>
+					</Route>
+					<Route exact path="/rooms">
+						<Rooms/>
+					</Route>
+					<Route exact path="/join" component={Join} />
+					<Route exact path="/game">
+						<Game />
+					</Route>
+				</Switch>
+			</Router>
+		</UserProvider>
   	);
 }
 

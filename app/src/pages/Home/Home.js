@@ -1,22 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import history from '../../history'
 
 import api from '../../api/api'
 
+import { Context } from '../../Context/UserProvider'
+
 const { submitUsername } = api()
 
-const Home = ({ setUsername, setPlayerID }) => {
+const Home = () => {
+
+    const { setUsername, setClientId } = useContext(Context);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const username = document.getElementById("username").value
-        const {successful, playerID} = await submitUsername(username)
+        const {successful, clientId} = await submitUsername(username)
         if(successful){
             setUsername(username)
-            setPlayerID(playerID)
+            setClientId(clientId)
             history.push("/rooms")
         }
+
     }
 
     return (
