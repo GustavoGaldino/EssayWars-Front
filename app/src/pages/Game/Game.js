@@ -10,6 +10,7 @@ import kirby from '../../images/kirby.png'
 
 import InvitePlayer from '../InvitePlayer/InvitePlayer'
 import PlayerInfo from './PlayerInfo'
+import Word from './Word'
 
 require("dotenv").config()
 
@@ -49,7 +50,7 @@ const Game = () => {
         typed += key
 
         for(let index = 0 ; index < words.length ; index++){
-            const w = words[index].innerHTML
+            const w = words[index].getAttribute("value")
             if(w.length < typed.length) continue
             else if(w.length === typed.length){
                 if(w === typed){
@@ -133,19 +134,7 @@ const Game = () => {
                         {
                             gamePlayer.board.words.map((word) => {
                                 return(
-                                    <span style={{
-                                        position: "absolute",
-                                        left: `${100 - word.position}%`,
-                                        top:`${gamePlayer.board.yMap[word.id]}%`,
-                                        fontSize: "2rem",
-                                        transition: "left 95ms",
-                                    }}
-                                        className="board-word"
-                                        key={word.id}
-                                        id={word.id}
-                                    >
-                                        {word.word}
-                                    </span>
+                                    < Word word={word} y={gamePlayer.board.yMap[word.id]} matchCount={2}/>
                                 )
                             })
                         }                   
