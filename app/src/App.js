@@ -1,6 +1,6 @@
 import { Route, Router, Switch } from 'react-router-dom'
 
-import React, { useState, createContext } from 'react'
+import React from 'react'
 
 import history from './history'
 

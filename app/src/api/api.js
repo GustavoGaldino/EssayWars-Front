@@ -1,6 +1,6 @@
 require("dotenv").config()
 
-const API_ENDPOINT = process.env.API_ENDPOINT || "http://localhost:3600"
+const API_ENDPOINT = process.env.API_ENDPOINT || "http://localhost:8080"
 
 const testing = false;
 
@@ -11,14 +11,19 @@ const API_MOCK_RESPONSE = {
 
 const api = () => {
     const submitUsername = async (username) => {
+        const myHeader = new Headers({
+            'Content-Type': 'application/json'
+        })
+
         const response = testing ? API_MOCK_RESPONSE : await fetch(`${API_ENDPOINT}/user`, {
             method: "POST",
             body: JSON.stringify({
-                username: username
-            })
+                nickname: username
+            }),
+            headers: myHeader
         }).catch(err => console.log(err))
 
-        if(response.status != 201){
+        if(response.status !== 201){
             return {successful: false, clientID: undefined}
         }
 
@@ -41,7 +46,7 @@ const api = () => {
             headers: myHeader
         }).catch(err => console.log(err))
 
-        if(response.status != 201){
+        if(response.status !== 201){
             return{
                 successful: false,
                 player: undefined,
@@ -69,7 +74,7 @@ const api = () => {
             headers: myHeader
         }).catch(err => console.log(err))
 
-        if(response.status != 201){
+        if(response.status !== 201){
             return {
                 successful: false,
                 match: undefined,

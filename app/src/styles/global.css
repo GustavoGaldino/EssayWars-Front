@@ -2,6 +2,7 @@
     --green-success: #67da86;
     --green-success-2: #28e65a;
     --dark-default: #272f3d;
+    --dark-lighter: #293549;
     --light-blue: #768bb0;
 }
 
@@ -64,4 +65,49 @@ input {
 
 span {
     color: white;
+}
+
+.game-window{
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 1rem;
+    background-color: var(--dark-lighter);
+}
+
+.header-game-window{
+    height: 15%;
+    border-bottom: 1px solid ivory;
+}
+
+.main-game-window{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-game-window{
+    height: 15%;
+    width: 100%;
+    border-top: 1px solid ivory;
+}
+
+.vertical-line{
+    position: relative;
+    width: 1px;
+    height: 100%;
+    left: 20%;
+    background-color: ivory;
+}
+
+.main-game-window-left{
+    border-right: 1px solid ivory;
+    width: 30%;
+    height: 100%;
+}
+
+.main-game-window-right{
+    width: 70%;
+    height: 100%;
 }
