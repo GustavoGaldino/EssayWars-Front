@@ -23,7 +23,9 @@ function App() {
 					<Route exact path="/rooms">
 						<Rooms/>
 					</Route>
-					<Route exact path="/join" component={Join} />
+					<Route exact path="/join">
+						<Join />
+					</Route>
 					<Route exact path="/game">
 						<Game />
 					</Route>

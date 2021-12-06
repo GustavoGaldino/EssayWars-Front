@@ -10,6 +10,8 @@ import socketIOClient from "socket.io-client";
 
 import history from "../../history";
 
+import successSound from '../../sounds/success.mp4'
+
 import {Context} from "../../Context/UserProvider";
 
 import kirby from "../../images/kirby.png";
@@ -60,6 +62,8 @@ const Game = () => {
       else if (w.length === typedRef.current.length) {
         if (w.toLowerCase() === typedRef.current.toLowerCase()) {
           socketRef.current.emit("word_finished", words[index].id);
+          const audio = new Audio(successSound)
+          audio.play()
           typedRef.current = "";
           break;
         }
@@ -179,7 +183,8 @@ const Game = () => {
               })}
             </div>
           </div>
-          <div className="footer-game-window"></div>
+          <div className="footer-game-window">
+          </div>
         </div>
       ) : (
         <InvitePlayer />

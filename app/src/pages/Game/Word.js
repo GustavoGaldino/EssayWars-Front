@@ -17,7 +17,7 @@ const Word = ({word, y, matchCount}) => {
         value={word.word}
       >
         <span>
-          <span style={{color: "#67da86"}}>
+          <span style={{color: "#6EE78E", fontWeight: "bold"}}>
             {word.word.substr(0, matchCount(word.word))}
           </span>
           {word.word.substr(matchCount(word.word))}
