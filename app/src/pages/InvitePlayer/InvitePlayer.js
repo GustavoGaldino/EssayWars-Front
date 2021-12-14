@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { VscCheck, VscCopy } from 'react-icons/vsc'
 import { Context } from '../../Context/UserProvider'
 
-const InvitePlayer = ({socketRef}) => {
+const InvitePlayer = ({socketRef, playerList}) => {
 
     const { match, hosting } = useContext(Context)
 
@@ -40,6 +40,14 @@ const InvitePlayer = ({socketRef}) => {
             </div>
             <span>Copy the session ID above and share it with your friends!</span>
             <span>Please wait for the game to start...</span>
+            {playerList.length ? <h1 style={{marginTop: "1rem", color: "white", fontSize: "1.5rem"}}>Connected Players:</h1> : <></> }
+            {playerList.map( (player) => {
+                return(
+                    <div>
+                        <span style={{color: "white"}}>{player.nickname}</span>
+                    </div>
+                )
+            })}
             {hosting === match.code ?
                 <button style={{
                     padding: ".75rem 1rem",

@@ -37,6 +37,8 @@ const Game = () => {
 
   const [gamePlayer, setGamePlayer] = useState({});
 
+  const [playerList, setPlayerList] = useState([]);
+
   const socketRef = useRef();
 
   const typedRef = useRef("");
@@ -182,6 +184,10 @@ const Game = () => {
       alert(msg.text)
     });
 
+    socket.on("list_users", (newPlayerList) => {
+      setPlayerList(newPlayerList);
+    })
+
     socketRef.current = socket;
 
     return () => {
@@ -281,7 +287,7 @@ const Game = () => {
             </div>
           </div>
         ) : (
-          <InvitePlayer socketRef={socketRef} />
+          <InvitePlayer socketRef={socketRef} playerList={playerList} />
         )}
         <div style={{position: "absolute", display: "flex", justifyContent: "start", height: "100vh"}}>
           <h1 id="alert" style={{
