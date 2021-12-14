@@ -28,7 +28,7 @@ const Home = () => {
         <div className="full-screen-container">
             <div className="side-by-side-container">
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Username" id="username" minLength={2} maxLength={20}/>
+                    <input type="text" placeholder="Username" id="username" minLength={2} maxLength={16}/>
                     <button className="btn" type="submit" >Ok</button>
                 </form>
             </div>

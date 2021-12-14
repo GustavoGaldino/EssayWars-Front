@@ -48,6 +48,20 @@ const Game = () => {
   const handlePress = useCallback((e) => {
     const key = e.key;
 
+    console.log(e)
+
+    if(key == "Backspace"){
+      if(typedRef.current.length > 0){
+        typedRef.current = typedRef.current.slice(0,-1);
+      }
+      return;
+    }
+
+    if(key == "Escape"){
+      typedRef.current = "";
+      return;
+    }
+
     const isSmallCaseLetter = (k) => {
       return k >= "a" && k <= "z";
     };
@@ -112,7 +126,7 @@ const Game = () => {
   useEffect(() => {
     if (!clientId) history.push("/");
 
-    window.addEventListener("keypress", handlePress);
+    window.addEventListener("keydown", handlePress);
 
     const socket = socketIOClient(`${SOCKET_ENDPOINT}/match/${match.id}`, {
       auth: {
@@ -137,11 +151,15 @@ const Game = () => {
       }
 
       if(newPlayerState.hp === 0){
-        for(let i = 0 ; i < 20 ; i++){
+        for(let i = 0 ; i < 8 ; i++){
           const audio = new Audio(oofSound);
           audio.play();
           await sleep(50);
         }
+        const socket = socketRef.current;
+        socket.off("update_player");
+        socket.off("start_match");
+        window.removeEventListener("keydown", handlePress);
       }
 
       hpRef.current = newPlayerState.hp;
@@ -160,12 +178,8 @@ const Game = () => {
       });
     });
 
-    socket.on("message", async (msg) => {
-      const alert = document.getElementById("alert");
-      alert.innerHTML = msg.text;
-      alert.style.display = "initial";
-      await sleep(2500)
-      alert.style.display = "none";
+    socket.on("message", (msg) => {
+      alert(msg.text)
     });
 
     socketRef.current = socket;
@@ -217,8 +231,11 @@ const Game = () => {
                 <img
                   src={kirby}
                   alt="kirby-fofo"
-                  style={{width: "100%", height: "100%"}}
+                  style={{width: "80%", height: "80%"}}
                 />
+                <div style={{height: "20%"}}>
+                  <span style={{fontSize: "2rem", color: "white"}}>{typedRef.current.toUpperCase()}</span>
+                </div>
               </div>
               <div
                 className="main-game-window-right"

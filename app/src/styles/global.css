@@ -78,6 +78,8 @@ span {
 .header-game-window{
     height: 15%;
     border-bottom: 1px solid ivory;
+    max-height: 15%;
+    overflow: hidden;
 }
 
 .main-game-window{
@@ -105,6 +107,10 @@ span {
     border-right: 1px solid ivory;
     width: 30%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-game-window-right{
