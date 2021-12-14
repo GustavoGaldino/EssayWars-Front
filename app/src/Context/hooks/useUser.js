@@ -10,5 +10,7 @@ export default function useUser(){
 
     const [match, setMatch] = useState({})
 
-    return {username, setUsername, clientId, setClientId, match, player, setPlayer, setMatch}
+    const [hosting, setHosting] = useState("")
+
+    return {username, setUsername, clientId, setClientId, match, player, setPlayer, setMatch, hosting, setHosting}
 }

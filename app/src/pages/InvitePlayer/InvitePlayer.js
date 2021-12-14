@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { VscCheck, VscCopy } from 'react-icons/vsc'
 import { Context } from '../../Context/UserProvider'
 
-const InvitePlayer = () => {
+const InvitePlayer = ({socketRef}) => {
 
-    const { match } = useContext(Context)
+    const { match, hosting } = useContext(Context)
 
     const [link, setLink] = useState("")
 
@@ -26,6 +26,10 @@ const InvitePlayer = () => {
         setLink(match.code)
     },[])
 
+    const handleStart = () => {
+        socketRef.current.emit("start_match")
+    }
+
     return (
         <div className="full-screen-container">
             <div style={{margin: "1rem", display: "flex", justifyContent: "center", alignContent:"center"}}>
@@ -36,6 +40,16 @@ const InvitePlayer = () => {
             </div>
             <span>Copy the session ID above and share it with your friends!</span>
             <span>Please wait for the game to start...</span>
+            {hosting === match.code ?
+                <button style={{
+                    padding: ".75rem 1rem",
+                    backgroundColor: "rgb(5, 235, 66, .65)",
+                    marginTop: "1rem",
+                    borderRadius: "1rem",
+                    color: "white",
+                    cursor: "pointer",
+                }} onClick={handleStart}>Start match</button>
+            : <></>}
         </div>
     )
 }

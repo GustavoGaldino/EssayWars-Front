@@ -9,13 +9,14 @@ const { createRoom } = api()
 
 const Rooms = () => {
 
-    const { clientId, setMatch, setPlayer } = useContext(Context)
+    const { clientId, setMatch, setPlayer, setHosting } = useContext(Context)
 
     const handleCreate = async () => {
         const {successful, match, player} = await createRoom(clientId)
         if(successful){
             await setMatch(match)
             await setPlayer(player)
+            await setHosting(match.code)
             history.push("/game")
         }
     }
